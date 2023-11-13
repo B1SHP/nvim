@@ -72,6 +72,7 @@ vim.api.nvim_set_keymap('n', 'run', ':lua Run_dev()<CR>', {noremap = true, silen
 vim.api.nvim_set_keymap('n', 'build', ':lua Build()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'push', ':lua Push()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-p>', ':UndotreeToggle<CR><Tab>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGitCurrentFile<CR>', {noremap = true, silent = true})
 
 --LEADER STUFF   
 vim.api.nvim_set_keymap('n', '<leader>l', ':Lazy<CR>', {noremap = true, silent = true})
