@@ -1,4 +1,13 @@
+@=========================================================================@>Estudos<@=========================================================================@
+Notepad: Assembly language
+Text-based game: C++
+Web scrapper: Python
+CLI: Rust
+Website: Webassembly
+Android App: Kotlin
+Freyja: javascipt
+Image Processing: Webassembly
+@==========================================================================@>Notes<@==========================================================================@
 Finish garuda
-@=========================================================================@>MyStuff<@=========================================================================@
-Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
 @==========================================================================@>Freyja<@=========================================================================@
+Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
