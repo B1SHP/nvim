@@ -29,7 +29,7 @@ os.execute("mkdir " .. workspace_dir)
 lsp_config.jdtls.setup({
     capabilities = capabilities,
     cmd = {
-        '/usr/lib/jvm/java-21-openjdk-amd64/bin/java',
+        '/home/bruno/.sdkman/candidates/java/current/bin/java',
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',

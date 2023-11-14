@@ -5,6 +5,7 @@ Bookmarks_folders = {}
 Bookmarks_connections = {}
 Bookmarks_files = {}
 Path = ''
+Test = {}
 
 local garuda_path = '/home/bruno/.config/nvim/.garuda.txt'
 
@@ -27,7 +28,7 @@ function Open_window_bookmarks_view()
 
     end
 
-    Collect_bookmarks()
+    Read_from_files()
 
     Reload_bookmarks_view()
 
@@ -44,61 +45,74 @@ function Open_window_bookmarks_view()
 
 end
 
-function Write_bookmarks()
+--[[
 
+{
+    String:Folder_name, 
+    Boolean:Open, 
+    List of List:{
+        {Bookmark_name, Bookmark_path},
+        {Bookmark_name, Bookmark_path},
+    }
+}
 
+]]--
 
-end
-
-function Collect_bookmarks()
-
-    Bookmarks_folders = {}
-    Bookmarks_connections = {}
-    Bookmarks_files = {}
+function Read_from_files()
 
     local file = io.open(garuda_path, 'r')
 
-    local data = ''
+    local line = ''
 
     if file ~= nil then
 
-        data = file:read('*a')
+        while line ~= nil do
 
-        file:close()
+            local data = {}
 
-    end
+            line = file:read('l')
 
-    local folders = Split(data, ',')
+            if line ~= nil then
 
-    for index, folder in ipairs(folders) do
+                line = line:gsub('\n', '')
 
-        local clean_folder = folder:gsub('\n', '')
+                line = line:gsub(',', '')
 
-        if clean_folder ~= nil and clean_folder ~= '' then
+                local folder_name_and_rest = Split(line, '=')
 
-            local folder_data = Split(clean_folder, '=')
+                table.insert(data, folder_name_and_rest[1])
+                table.insert(data, false)
 
-            local folder_name = folder_data[1]
+                local bookmarks_and_paths_groups = Split(folder_name_and_rest[2], '|')
 
-            table.insert(Bookmarks_folders, folder_name)
+                local index = 1
 
-            table.insert(Bookmarks_connections, false)
+                local bookmarks = {}
 
-            local files_list = {}
+                while index <= #bookmarks_and_paths_groups do
 
-            for lindex, nicknames_and_paths in ipairs(Split(folder_data[2], '|')) do
+                    local bookmarks_and_paths = Split(bookmarks_and_paths_groups[index], ':')
 
-                local name_and_path = Split(nicknames_and_paths, ':')
+                    table.insert(bookmarks, bookmarks_and_paths)
 
-                table.insert(files_list, {name_and_path[1], name_and_path[2]})
+                    index = index + 1
+
+                end
+
+                table.insert(data, bookmarks)
+                table.insert(Test, data)
 
             end
-
-            table.insert(Bookmarks_files, files_list)
 
         end
 
     end
+
+end
+
+function Write_to_files()
+
+
 
 end
 
@@ -109,21 +123,27 @@ function Reload_bookmarks_view()
         '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
     }
 
-    for index, folder in ipairs(Bookmarks_folders) do
+    local index = 1
 
-        table.insert(Bookmarks_in_memory, (' ' .. tostring(index) .. ': ' .. folder))
+    while index <= #Test do
 
-        local file = Bookmarks_files[index]
+        table.insert(Bookmarks_in_memory, (' ' .. tostring(index) .. ': ' .. Test[index][1]))
 
-        if Bookmarks_connections[index] then
+        local inner_index = 1
 
-            for i, data in ipairs(file) do
+        while inner_index <= #Test[index][3] do
 
-                table.insert(Bookmarks_in_memory, (' ╰' .. tostring(index) .. '.' .. tostring(i) .. ': ' .. file[i][1]))
+            if Test[index][2] then
+
+                table.insert(Bookmarks_in_memory, (' ╰' .. tostring(index) .. '.' .. tostring(inner_index) .. ': ' .. Test[index][3][inner_index][1]))
 
             end
 
+            inner_index = inner_index + 1
+
         end
+
+        index = index + 1
 
     end
 
@@ -169,7 +189,7 @@ function Open()
 
         if folder_id ~= nil then
 
-            Bookmarks_connections[folder_id] = not Bookmarks_connections[folder_id]
+            Test[folder_id][2] = not Test[folder_id][2]
 
             Reload_bookmarks_view()
 
