@@ -1,1 +1,1 @@
-Queclink=Comando Queclink:/home/bruno/dev/java/link-dev/microservicos/queclink-comando/|Converter Queclink:/home/bruno/dev/java/link-dev/microservicos/queclink/|Gateway:/home/bruno/dev/java/link-dev/microservicos/queclink-gateway/|Sauron:/home/bruno/dev/java/link-dev/microservicos/lib/sauron/|Estudos:/home/bruno/Desktop/Estudo/|
+Converters=Queclink:/home/bruno/dev/java/link-dev/microservicos/queclink/|Teltonika:/home/bruno/dev/java/link-dev/microservicos/teltonika-converter/|Suntech:/home/bruno/dev/java/link-dev/microservicos/suntech/|

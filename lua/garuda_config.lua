@@ -46,15 +46,19 @@ function Open_window_bookmarks_view()
 
 end
 
-function Rename_folder()
-
-    local folder_id = Find_folder()
-
-    Bookmarks_loaded[tonumber(folder_id)][1] = vim.fn.input('Write the new name for this folder: ')
+function Reload_and_write()
 
     Reload_bookmarks_view()
 
     Write_to_file_garuda()
+
+end
+
+function Rename_folder()
+
+    Bookmarks_loaded[tonumber(Find_folder())][1] = vim.fn.input('Write the new name for this folder: ')
+
+    Reload_and_write()
 
 end
 
@@ -72,9 +76,7 @@ function Rename_bookmark()
 
         Bookmarks_loaded[tonumber(folder_id)][3][tonumber(bookmark_id)][1] = new_name
 
-        Reload_bookmarks_view()
-
-        Write_to_file_garuda()
+        Reload_and_write()
 
     end
 
@@ -82,13 +84,9 @@ end
 
 function Remove_folder()
 
-    local folder_id = Find_folder()
+    table.remove(Bookmarks_loaded, tonumber(Find_folder()))
 
-    table.remove(Bookmarks_loaded, tonumber(folder_id))
-
-    Reload_bookmarks_view()
-
-    Write_to_file_garuda()
+    Reload_and_write()
 
 end
 
@@ -106,9 +104,7 @@ function Remove_bookmark()
 
     end
 
-    Reload_bookmarks_view()
-
-    Write_to_file_garuda()
+    Reload_and_write()
 
 end
 
@@ -164,21 +160,15 @@ function Add_new_bookmark()
         Bookmarks_loaded[folder_id][2] = true
     end
 
-    Write_to_file_garuda()
-
-    Reload_bookmarks_view()
+    Reload_and_write()
 
 end
 
 function Add_new_folder()
 
-    local data = {vim.fn.input('Write the name for the new folder: '), false}
+    table.insert(Bookmarks_loaded, {vim.fn.input('Write the name for the new folder: '), false})
 
-    table.insert(Bookmarks_loaded, data)
-
-    Reload_bookmarks_view()
-
-    Write_to_file_garuda()
+    Reload_and_write()
 
 end
 
