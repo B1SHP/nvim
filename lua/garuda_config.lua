@@ -18,10 +18,10 @@ function Open_window_bookmarks_view()
 
         vim.api.nvim_buf_set_name(Buffer_view_bookmarks_list, "book_marks")
 
+        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'tp', ':q!<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'h', ':lua Open()<CR>', { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'af', ':lua Add_new_folder()<CR>', { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'ab', ':lua Add_new_bookmark()<CR>', { noremap = true, silent = true })
-        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'h', ':lua Open()<CR>', { noremap = true, silent = true })
-        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'tp', ':q!<CR>', { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'rmb', ':lua Remove_bookmark()<CR>', { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'rmf', ':lua Remove_folder()<CR>', { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'rnb', ':lua Rename_bookmark()<CR>', { noremap = true, silent = true })

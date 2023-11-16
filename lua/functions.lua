@@ -80,7 +80,7 @@ function Find_name(microservice_name)
 
         for line in file:lines() do
 
-            if string.match(line, '[^zqwsxcdrfvbgtyhjuiklop]name: ') then 
+            if string.match(line, '[^zqwsxcdrfvbgtyhjuiklop]name: ') then
 
                 return string.match(line, 'name: (.*)')
 
@@ -115,7 +115,7 @@ function Push()
                 'term ./mvnw clean install -DskipTests ' ..
                 '&& cd ' .. microservice_name .. '-server ' ..
                 '&& ./mvnw spring-boot:build-image -DskipTests -Pnative -Dspring-boot.build-image.imageName=10.210.7.18:5000/' .. application_name .. ' ' ..
-                '&& docker push 10.210.7.18:5000/' .. application_name .. ' ' .. 
+                '&& docker push 10.210.7.18:5000/' .. application_name .. ' ' ..
                 '&& docker rmi $(docker images -q 10.210.7.18:5000/' .. application_name .. ') --force ' ..
                 '&& exit'
             )
@@ -234,7 +234,13 @@ function LocalTree()
 
     if string.find(name, 'microservicos') then
 
-        Path_global = '/home/bruno/dev/java/link-dev/microservicos/' .. string.match(name, '/home/bruno/dev/java/link%-dev/microservicos/((%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?))') .. '/'
+        local match = string.match(name, '/home/bruno/dev/java/link%-dev/microservicos/((%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?))')
+
+        if match ~= nil then
+
+            Path_global = '/home/bruno/dev/java/link-dev/microservicos/' .. match .. '/'
+
+        end
 
     end
 

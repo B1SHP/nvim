@@ -7,7 +7,17 @@ Website: Webassembly
 Android App: Kotlin
 Freyja: javascipt
 Image Processing: Webassembly
+@=========================================================================@>Motions<@=========================================================================@
+Mais Alguns Motions
+Ctrl + u: Scroll up (half a page).
+Ctrl + d: Scroll down (half a page).
+Ctrl + b: Scroll up (full page).
+Ctrl + f: Scroll down (full page).
+m{letter}: Set a mark at the current cursor position.
+'{letter}``: Jump to the line of the specified mark.
+`{letter}: Jump to the exact position of the specified mark.
+%: Move to the matching parenthesis/brace.
 @==========================================================================@>Notes<@==========================================================================@
-Só falta ver aquelas cores, e usar o sistema de backup
+Só falta ver aquelas cores
 @==========================================================================@>Freyja<@=========================================================================@
 Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
