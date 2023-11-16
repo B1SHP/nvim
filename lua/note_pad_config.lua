@@ -11,7 +11,7 @@ function Open_window_note_pad()
 
     vim.api.nvim_buf_set_name(Buffer_view_note_pad, "note_pad")
 
-    vim.api.nvim_buf_set_keymap(Buffer_view_note_pad, 'i', 'qq', '<Esc>:lua Write_to_file()<CR>', { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(Buffer_view_note_pad, 'i', 'qq', '<Esc>:lua Write_to_file_note_pad()<CR>', { noremap = true, silent = true })
 
     vim.api.nvim_buf_set_lines(Buffer_view_note_pad, 0, -1, false, Load_file())
 
@@ -57,7 +57,7 @@ function Build_line_marking(mark)
 
 end
 
-function Write_to_file()
+function Write_to_file_note_pad()
 
     local file = io.open(path, 'w')
 

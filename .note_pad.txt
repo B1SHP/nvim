@@ -8,13 +8,6 @@ Android App: Kotlin
 Freyja: javascipt
 Image Processing: Webassembly
 @==========================================================================@>Notes<@==========================================================================@
-Finish garuda
-Read: Done
-Show: Done
-Open Folder: Done
-Close Folder: Done
-Rename Folder/Bookmark: Not Done
-Delete Folder/Bookmark: Not Done
-Add Folder/Bookmark: Not Done
+Só falta ver aquelas cores, e usar o sistema de backup
 @==========================================================================@>Freyja<@=========================================================================@
 Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
