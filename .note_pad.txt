@@ -8,6 +8,7 @@ Android App: Kotlin
 Freyja: javascipt
 Image Processing: Webassembly
 @=========================================================================@>Motions<@=========================================================================@
+teste
 Mais Alguns Motions
 Ctrl + u: Scroll up (half a page).
 Ctrl + d: Scroll down (half a page).
