@@ -8,7 +8,6 @@ Android App: Kotlin
 Freyja: javascipt
 Image Processing: Webassembly
 @=========================================================================@>Motions<@=========================================================================@
-teste
 Mais Alguns Motions
 Ctrl + u: Scroll up (half a page).
 Ctrl + d: Scroll down (half a page).
@@ -20,5 +19,9 @@ m{letter}: Set a mark at the current cursor position.
 %: Move to the matching parenthesis/brace.
 @==========================================================================@>Notes<@==========================================================================@
 Só falta ver aquelas cores
+Adicionar shades diferentes as constantes
 @==========================================================================@>Freyja<@=========================================================================@
 Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
+@===========================================================================@>Link<@==========================================================================@
+Fazer o comando de reboot pra geral
+Terminar de fazer o comando que atualiza a configuração

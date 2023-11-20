@@ -35,6 +35,14 @@ function Find_files_local()
 
 end
 
+function Run_py()
+
+    local path = vim.fn.expand('%:p')
+
+    vim.cmd('! python3 ' .. path)
+
+end
+
 function Diagnostics_status_bar()
 
     local errossera = vim.diagnostic.get(0, { severity = {
