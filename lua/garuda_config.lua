@@ -37,7 +37,7 @@ function Open_window_bookmarks_view()
         relative = 'editor',
         anchor = 'NW',
         width = 50,
-        height = 50,
+        height = math.floor((vim.fn.winheight(0) * 0.6)),
         row = 0,
         col = 0,
         focusable = true,

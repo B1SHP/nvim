@@ -25,3 +25,6 @@ Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os 
 @===========================================================================@>Link<@==========================================================================@
 Fazer o comando de reboot pra geral
 Terminar de fazer o comando que atualiza a configuração
+ENVIAR_CONFIGURACAO_PADRAO(113, "0071"),
+ENVIA_CONFIGURACAO(211, "00D3"),
+ALTERAR_CONFIGURACAO_DE_DISPOSITIVO_EXTERNO

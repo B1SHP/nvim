@@ -45,6 +45,7 @@ vim.api.nvim_set_keymap('v', '<C-k>', ':m -2<CR>==gv', {noremap = true, silent =
 vim.api.nvim_set_keymap('v', '<C-j>', [[:'<,'>m '>+1<CR>==gv]], {noremap = true, silent = true})
 
 --NORMAL MODE    
+vim.api.nvim_set_keymap('n', 'term', ':lua Terminal()<CR>i', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'ii', '<Esc>i', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'vv', '<Esc>v', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'bb', '<Esc><C-v>', {noremap = true, silent = true})
@@ -59,10 +60,10 @@ vim.api.nvim_set_keymap('n', 'nn', ':lua LocalTree()<CR>', {noremap = true, sile
 vim.api.nvim_set_keymap('n', 'nb', ':lua ConfigTree()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'nm', ':lua MicroservicesTree()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<Tab>', '<C-w>w', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Left>', '<Esc>:vertical resize -10<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Up>', '<Esc>:resize +10<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Down>', '<Esc>:resize -10<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<Right>', '<Esc>:vertical resize +10<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Left>', '<Esc>:vertical resize -5<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Up>', '<Esc>:resize +5<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Down>', '<Esc>:resize -5<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<Right>', '<Esc>:vertical resize +5<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-v>', '<Esc>:vsplit<CR>i', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-b>', '<Esc>:split<CR>i', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<C-k>', '<S-n>', {noremap = true, silent = true})

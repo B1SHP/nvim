@@ -2,6 +2,30 @@ local telescope = require('telescope.builtin')
 
 Path_global = '/home/bruno/dev/java/link-dev/microservicos/'
 
+function Terminal()
+
+    local path = '~/'
+
+    local broken_path = Split(vim.api.nvim_buf_get_name(0), '/')
+
+    for index, value in ipairs(broken_path) do
+
+        if index < #broken_path and index > 2 then
+
+            path = path .. value .. '/'
+
+        end
+
+    end
+
+    vim.cmd('split')
+    vim.cmd('wincmd j')
+    vim.cmd('resize 25')
+    vim.cmd('cd ' .. path)
+    vim.cmd('term')
+
+end
+
 function Split(inputstr, sep)
 
     if sep == nil then
