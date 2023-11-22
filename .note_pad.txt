@@ -9,22 +9,19 @@ Freyja: javascipt
 Image Processing: Webassembly
 @=========================================================================@>Motions<@=========================================================================@
 Mais Alguns Motions
-Ctrl + u: Scroll up (half a page).
-Ctrl + d: Scroll down (half a page).
-Ctrl + b: Scroll up (full page).
-Ctrl + f: Scroll down (full page).
 m{letter}: Set a mark at the current cursor position.
-'{letter}``: Jump to the line of the specified mark.
-`{letter}: Jump to the exact position of the specified mark.
 %: Move to the matching parenthesis/brace.
 @==========================================================================@>Notes<@==========================================================================@
 Só falta ver aquelas cores
 Adicionar shades diferentes as constantes
+Dar uma olhada em uma extenção que gera a encapsulação das coisas
+Definir os safe characters do leap
 @==========================================================================@>Freyja<@=========================================================================@
 Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
 @===========================================================================@>Link<@==========================================================================@
-Fazer o comando de reboot pra geral
 Terminar de fazer o comando que atualiza a configuração
-ENVIAR_CONFIGURACAO_PADRAO(113, "0071"),
-ENVIA_CONFIGURACAO(211, "00D3"),
-ALTERAR_CONFIGURACAO_DE_DISPOSITIVO_EXTERNO
+Criar comandos para as 3 fazes do rs232
+pt1: Habilitar Envio de Comando pela Serial (baudrate)
+pt2: DESABILITA o Envio de comando pela Serial
+pt3: ENVIA COMANDO PARA O DISPOSITIVO EXTERNO
+Verificar se o solicitar parametros esta com a data hora ou n

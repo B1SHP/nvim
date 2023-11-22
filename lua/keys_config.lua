@@ -32,6 +32,8 @@ vim.api.nvim_set_keymap('i', '<C-j>', '<Esc><S-o>', {noremap = true, silent = tr
 vim.api.nvim_set_keymap('i', 'ee', '<CR>', {noremap = true, silent = true})
 
 --VIEW MODE    
+vim.api.nvim_set_keymap('v', '/', ':s/^/\\/\\//<CR>i', {noremap = true, silent = true})
+
 vim.api.nvim_set_keymap('v', 'ii', '<Esc>i', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', 'nn', '<Esc>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', 'bb', '<Esc><C-v>', {noremap = true, silent = true})
@@ -45,6 +47,10 @@ vim.api.nvim_set_keymap('v', '<C-k>', ':m -2<CR>==gv', {noremap = true, silent =
 vim.api.nvim_set_keymap('v', '<C-j>', [[:'<,'>m '>+1<CR>==gv]], {noremap = true, silent = true})
 
 --NORMAL MODE    
+vim.api.nvim_set_keymap('n', '<C-y>', 'b', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-u>', 'w', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-n>', '<C-u>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<C-m>', '<C-d>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'term', ':lua Terminal()<CR>i', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'ii', '<Esc>i', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'vv', '<Esc>v', {noremap = true, silent = true})

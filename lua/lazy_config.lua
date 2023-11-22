@@ -65,4 +65,7 @@ require("lazy").setup({
     {
         'kdheepak/lazygit.nvim'
     },
+    {
+        'ggandor/leap.nvim'
+    }
 })
