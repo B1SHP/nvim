@@ -16,12 +16,10 @@ Só falta ver aquelas cores
 Adicionar shades diferentes as constantes
 Dar uma olhada em uma extenção que gera a encapsulação das coisas
 Definir os safe characters do leap
+Adicionar a funçãp de backup aos dois plugins que precisam de txt
 @==========================================================================@>Freyja<@=========================================================================@
 Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
 @===========================================================================@>Link<@==========================================================================@
 Terminar de fazer o comando que atualiza a configuração
-Criar comandos para as 3 fazes do rs232
-pt1: Habilitar Envio de Comando pela Serial (baudrate)
-pt2: DESABILITA o Envio de comando pela Serial
-pt3: ENVIA COMANDO PARA O DISPOSITIVO EXTERNO
 Verificar se o solicitar parametros esta com a data hora ou n
+Mudar o comando do rs232
