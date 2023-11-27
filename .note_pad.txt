@@ -17,9 +17,9 @@ Adicionar shades diferentes as constantes
 Dar uma olhada em uma extenção que gera a encapsulação das coisas
 Definir os safe characters do leap
 Adicionar a funçãp de backup aos dois plugins que precisam de txt
+Fazer algum tipo de compensador para fazer a krl da status bar ficar certa 100%
+vim.cmd([[autocmd TextChanged,TextChangedI <buffer> lua require('your_module').onTextChanged()]])
 @==========================================================================@>Freyja<@=========================================================================@
 Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
 @===========================================================================@>Link<@==========================================================================@
 Terminar de fazer o comando que atualiza a configuração
-Verificar se o solicitar parametros esta com a data hora ou n
-Mudar o comando do rs232

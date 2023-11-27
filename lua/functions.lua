@@ -2,6 +2,17 @@ local telescope = require('telescope.builtin')
 
 Path_global = '/home/bruno/dev/java/link-dev/microservicos/'
 
+function String_repetition(initial_string, string_to_be_appended, how_many_times_it_ll_be_appended, after_or_before)
+
+    if after_or_before > 0 then
+        return (initial_string .. (string_to_be_appended:rep(how_many_times_it_ll_be_appended)))
+    else
+        return ((string_to_be_appended:rep(how_many_times_it_ll_be_appended)) .. initial_string)
+    end
+
+
+end
+
 function Terminal()
 
     local path = '~/'
@@ -64,37 +75,6 @@ function Run_py()
     local path = vim.fn.expand('%:p')
 
     vim.cmd('! python3 ' .. path)
-
-end
-
-function Diagnostics_status_bar()
-
-    local errossera = vim.diagnostic.get(0, { severity = {
-        vim.diagnostic.severity.ERROR,
-        vim.diagnostic.severity.WARN,
-        vim.diagnostic.severity.INFO,
-        vim.diagnostic.severity.HINT
-    } })
-
-    local errors = 0
-    local warnings = 0
-    local informations = 0
-    local hints = 0
-
-    for _, diagnostic in ipairs(errossera) do
-
-        if diagnostic.severity == 1 then
-            errors = errors + 1
-        elseif diagnostic.severity == 2 then
-            warnings = warnings + 1
-        elseif diagnostic.severity == 3 then
-            informations = informations + 1
-        elseif diagnostic.severity == 4 then
-            hints = hints + 1
-        end
-    end
-
-    return (tostring(errors) .. '‼️  ' .. tostring(warnings) .. '⚠️  ' .. tostring(informations) .. '   ' .. tostring(hints) .. '💡')
 
 end
 
