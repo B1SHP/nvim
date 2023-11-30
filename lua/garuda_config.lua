@@ -349,7 +349,6 @@ function Open()
 end
 
 function Reload_window_bookmarks_view()
-    vim.cmd('highlight CursorLine guibg=#171717 guifg=#ca9dd7')
     vim.cmd('setlocal nonumber norelativenumber')
     vim.cmd('highlight CustomChar guifg=#7fcbd7')
     vim.cmd('syntax match CustomChar /./')

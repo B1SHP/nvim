@@ -32,7 +32,7 @@ vim.api.nvim_set_keymap('i', '<C-j>', '<Esc><S-o>', {noremap = true, silent = tr
 vim.api.nvim_set_keymap('i', 'ee', '<CR>', {noremap = true, silent = true})
 
 --VIEW MODE    
-vim.api.nvim_set_keymap('v', '/', ':s/^/\\/\\//<CR>:nohlsearch<CR>i', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '/', '[[:lua Add_comments()<CR>]]', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', 'ii', '<Esc>i', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', 'nn', '<Esc>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('v', 'bb', '<Esc><C-v>', {noremap = true, silent = true})

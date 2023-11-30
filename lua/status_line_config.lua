@@ -1,46 +1,58 @@
 local icons = require('nvim-web-devicons')
-require('functions')
-
-Constante_de_tamanho = 100
-
-vim.cmd('highlight StatusLeft guifg=#F1F111 guibg=#41496b')
-vim.cmd('highlight StatusMiddle guifg=#A8B385 guibg=#313751')
-vim.cmd('highlight StatusRight guifg=#17e0e8 guibg=#495177')
 
 vim.cmd('highlight statusline guibg=#313751')
 
-vim.opt.statusline = '%#StatusLeft# %-5.100{v:lua.Status_line_left_side()} %*%= %#StatusMiddle#%-10{v:lua.Diagnostics_status_bar()}%* %=%#StatusRight# %-5.100{v:lua.Status_line_right_side()} %*'
+vim.cmd('highlight MyStatusLineMode guifg=#413C58 guibg=#E0BE36')
+vim.cmd('highlight MyStatusLineModeDivider guifg=#E0BE36 guibg=#FF6978')
 
-function Status_line_left_side()
+vim.cmd('highlight MyStatusLineNumber guifg=#B1EDE8 guibg=#FF6978')
+vim.cmd('highlight MyStatusLineNumberDivider guifg=#FF6978 guibg=#B1EDE8')
 
-    local mode = string.upper(vim.fn.mode())
-    local current_line = vim.fn.line('.')
-    local total_lines = vim.fn.line('$')
-    local percentage = math.floor((current_line * 100) / total_lines)
-    local saved = vim.fn.getbufinfo(vim.api.nvim_get_current_buf())[1].changed == 1 and '+' or '-'
+vim.cmd('highlight MyStatusLinePercentage guifg=#574D68 guibg=#B1EDE8')
+vim.cmd('highlight MyStatusLinePercentageDivider guifg=#B1EDE8 guibg=#F7FF58')
 
-    local final_string = '[' .. mode .. ']  ' .. '[' .. tostring(current_line) .. '/' .. tostring(total_lines) .. ']  ' .. '[' .. percentage .. '%]  [' .. saved .. ']'
+vim.cmd('highlight MyStatusLineModified guifg=#537A5A guibg=#F7FF58')
+vim.cmd('highlight MyStatusLineModifiedDivider guifg=#F7FF58 guibg=#313751')
 
-    return String_repetition(final_string, ' ', (Constante_de_tamanho - string.len(final_string)), 1)
+vim.cmd('highlight MyStatusLineType guifg=#E0BE36 guibg=#413C58')
+vim.cmd('highlight MyStatusLineTypeDivider guifg=#413C58 guibg=#313751')
+
+vim.cmd('highlight MyStatusLineDiagnostics guifg=#B1EDE8 guibg=#313751')
+vim.cmd('highlight MyStatusLineDiagnosticsDivider guifg=#313751 guibg=#7F62B3')
+
+vim.cmd('highlight MyStatusLineFileName guifg=#F7FF58 guibg=#7F62B3')
+vim.cmd('highlight MyStatusLineFileNameDivider guifg=#7F62B3 guibg=#313751')
+
+function Status_bar()
+
+    local mode = '%#MyStatusLineMode# %-1.100{v:lua.Mode()} %*'
+    local mode_divider = '%#MyStatusLineModeDivider#%*'
+
+    local line = '%#MyStatusLineNumber# %-1.100{v:lua.Line_number()} %*'
+    local line_divider = '%#MyStatusLineNumberDivider#%*'
+
+    local percentage = '%#MyStatusLinePercentage# %-1.100{v:lua.Percentage()} %*'
+    local percentage_divider = '%#MyStatusLinePercentageDivider#%*'
+
+    local modified = '%#MyStatusLineModified# %-1.100{v:lua.Modified()} %*'
+    local modified_divider = '%#mystatuslinemodifieddivider#%*'
+
+    local type = '%#MyStatusLineType# %-1.100{v:lua.Type()} %*'
+    local type_divider = '%#MyStatusLineTypeDivider#%*'
+
+    local diagnostics = '%#MyStatusLineDiagnostics# %-1.100{v:lua.Diagnostics()} %*'
+    local diagnostics_divider = '%#MyStatusLineDiagnosticsDivider#%*'
+
+    local file_name = '%#MyStatusLineFileName# %-1.100{v:lua.File_name()} %*'
+    local file_name_divider = '%#MyStatusLineFileNameDivider#%*'
+
+    return mode .. mode_divider .. line .. line_divider .. percentage .. percentage_divider .. modified .. modified_divider .. '%=' .. file_name_divider .. file_name .. diagnostics_divider .. diagnostics .. type_divider .. type
 
 end
 
-function Status_line_right_side()
+function File_name()
 
-    local type = vim.api.nvim_buf_get_option(0, 'filetype')
     local name = vim.fn.expand('%:t')
-
-    if type ~= nil then
-
-        local icon = icons.get_icon('a', type)
-
-        if icon ~= nil then
-
-            type = string.upper(type) .. ' ' .. icon
-
-        end
-
-    end
 
     if name ~= nil then
 
@@ -54,46 +66,63 @@ function Status_line_right_side()
 
     end
 
-    local final_string = ''
-
-    if name ~= nil and type ~= nil and #name > 0 and #type > 0 then
-
-        final_string = type .. ' | ' .. name
-
-        Size_right = string.len(final_string)
-
-    elseif name ~= nil and #name > 0 then
-
-        final_string = name
-
-        Size_right = string.len(final_string)
-
-    elseif type ~= nil and #type > 0 then
-
-        final_string = type
-
-        Size_right = string.len(final_string)
-
-    end
-
-    return String_repetition(final_string, ' ', (Constante_de_tamanho - string.len(final_string)), -1)
+    return name
 
 end
 
-function Change_status_line_color()
+function Modified()
+    return vim.fn.getbufinfo(vim.api.nvim_get_current_buf())[1].changed == 1 and '+' or '-'
+end
+
+function Percentage()
+    return tostring(math.floor((vim.fn.line('.') * 100) / vim.fn.line('$'))) .. '%'
+end
+
+function Line_number()
+    return tostring(vim.fn.line('.')) .. ':' .. tostring(vim.fn.line('$'))
+end
+
+function Mode()
 
     local mode = vim.fn.mode()
 
     if mode == 'n' then
-        vim.cmd('highlight CursorLine guibg=#171717 guifg=#7fcbd7')
+        mode = 'Normal'
     elseif mode == 'i' then
-        vim.cmd('highlight CursorLine guibg=#171717 guifg=#ca9dd7')
+        mode = 'Insert'
+    elseif mode == 'c' then
+        mode = 'Command'
+    elseif mode == 'v' then
+        mode = 'Visual'
+    else
+        mode = 'Visual Block'
     end
+
+    return mode
 
 end
 
+function Type()
 
-function Diagnostics_status_bar()
+    local type = vim.api.nvim_buf_get_option(0, 'filetype')
+
+    if type ~= nil then
+
+        local icon = icons.get_icon('a', type)
+
+        if icon ~= nil then
+
+            type = type .. ' ' .. icon
+
+        end
+
+    end
+
+    return type
+
+end
+
+function Diagnostics()
 
     local errossera = vim.diagnostic.get(0, { severity = {
         vim.diagnostic.severity.ERROR,
@@ -120,6 +149,8 @@ function Diagnostics_status_bar()
         end
     end
 
-    return (tostring(errors) .. '‼️  ' .. tostring(warnings) .. '⚠️  ' .. tostring(informations) .. '   ' .. tostring(hints) .. '💡')
+    return (tostring(errors) .. '‼️  ' .. tostring(warnings) .. '⚠️  ' .. tostring(informations) .. 'ℹ️  ' .. tostring(hints) .. '💡')
 
 end
+
+vim.opt.statusline = Status_bar()

@@ -12,8 +12,33 @@ lsp_config.pyright.setup({capabilities = capabilities,})
 lsp_config.volar.setup({capabilities = capabilities,})
 lsp_config.clangd.setup({capabilities = capabilities,})
 
+local function handler_attach(client, bufnr)
+
+    local name = Split(vim.api.nvim_buf_get_name(bufnr), '/')
+    name = Split(name[#name], '.')[1]
+    vim.notify('  ' .. client.name:sub(1, 1):upper() .. client.name:sub(2) .. ' Has Attached To ' .. name, "info", {title = "Lsp Status"})
+
+end
+
+--workspace_folders
+--table: 0x7f82c19213d0
+
+-- local function handle_progress(_, result, context)
+--     local value = result.value
+--     local severity = {
+--         vim.log.levels.ERROR,
+--         vim.log.levels.WARN,
+--         vim.log.levels.INFO,
+--         vim.log.levels.INFO, -- Map both `hint` and `info` to `info`
+--       }
+--       vim.notify("hi", "info", { title = "LSP" })
+--   end
+
+-- vim.lsp.handlers["$/progress"] = handle_progress
+
 lsp_config.lua_ls.setup({
     capabilities = capabilities,
+    on_attach = handler_attach,
     settings = {
         Lua = {
             diagnostics = {
@@ -27,6 +52,7 @@ local workspace_dir = vim.fn.stdpath('data') .. '/site/java/workspace-root/' .. 
 os.execute("mkdir " .. workspace_dir)
 
 lsp_config.jdtls.setup({
+    on_attach = handler_attach,
     capabilities = capabilities,
     cmd = {
         '/home/bruno/.sdkman/candidates/java/current/bin/java',

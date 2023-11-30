@@ -2,6 +2,28 @@ local telescope = require('telescope.builtin')
 
 Path_global = '/home/bruno/dev/java/link-dev/microservicos/'
 
+function Add_comments()
+
+    local type = vim.api.nvim_buf_get_option(0, 'filetype')
+
+    local comments = ''
+
+    if type == 'lua' then
+        print('lua')
+        comments = '--'
+    elseif type == 'java' then
+        print('java')
+        comments = '//'
+    end
+
+    local line_start = vim.api.nvim_buf_get_mark(0, '>')[1]
+    local line_end = #vim.api.nvim_buf_get_mark(0, '<')
+
+
+    print(tostring(line_start), tostring(line_end))
+
+end
+
 function String_repetition(initial_string, string_to_be_appended, how_many_times_it_ll_be_appended, after_or_before)
 
     if after_or_before > 0 then
