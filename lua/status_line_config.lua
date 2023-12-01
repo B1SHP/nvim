@@ -17,11 +17,16 @@ vim.cmd('highlight MyStatusLineModifiedDivider guifg=#F7FF58 guibg=#313751')
 vim.cmd('highlight MyStatusLineType guifg=#E0BE36 guibg=#413C58')
 vim.cmd('highlight MyStatusLineTypeDivider guifg=#413C58 guibg=#313751')
 
-vim.cmd('highlight MyStatusLineDiagnostics guifg=#B1EDE8 guibg=#313751')
-vim.cmd('highlight MyStatusLineDiagnosticsDivider guifg=#313751 guibg=#7F62B3')
+vim.cmd('highlight MyStatusLineFileName guifg=#B1EDE8 guibg=#313751')
+vim.cmd('highlight MyStatusLineFileNameDivider guifg=#313751 guibg=#2a3d66')
 
-vim.cmd('highlight MyStatusLineFileName guifg=#F7FF58 guibg=#7F62B3')
-vim.cmd('highlight MyStatusLineFileNameDivider guifg=#7F62B3 guibg=#313751')
+vim.cmd('highlight MyStatusLineDiagnostics guifg=#aaa6a4 guibg=#2a3d66')
+vim.cmd('highlight MyStatusLineDiagnosticsDivider guifg=#2a3d66 guibg=#313751')
+
+vim.cmd('highlight MyStatusLineError guifg=#FF2400 guibg=#2a3d66')
+vim.cmd('highlight MyStatusLineWarning guifg=#FFAD01 guibg=#2a3d66')
+vim.cmd('highlight MyStatusLineInfo guifg=#72A0C1 guibg=#2a3d66')
+vim.cmd('highlight MyStatusLineHint guifg=#708238 guibg=#2a3d66')
 
 function Status_bar()
 
@@ -40,13 +45,96 @@ function Status_bar()
     local type = '%#MyStatusLineType# %-1.100{v:lua.Type()} %*'
     local type_divider = '%#MyStatusLineTypeDivider#%*'
 
-    local diagnostics = '%#MyStatusLineDiagnostics# %-1.100{v:lua.Diagnostics()} %*'
-    local diagnostics_divider = '%#MyStatusLineDiagnosticsDivider#%*'
-
     local file_name = '%#MyStatusLineFileName# %-1.100{v:lua.File_name()} %*'
     local file_name_divider = '%#MyStatusLineFileNameDivider#%*'
 
-    return mode .. mode_divider .. line .. line_divider .. percentage .. percentage_divider .. modified .. modified_divider .. '%=' .. file_name_divider .. file_name .. diagnostics_divider .. diagnostics .. type_divider .. type
+    local diagnostics = '%#MyStatusLineDiagnostics# %-1.100{v:lua.Diagnostics()} %*'
+    local diagnostics_divider = '%#MyStatusLineDiagnosticsDivider#%*'
+
+    local errors = '%#MyStatusLineError#  %-1.100{v:lua.Error()}\u{200a}%*'
+    local warnings = '%#MyStatusLineWarning#  %-1.100{v:lua.Warning()}\u{200a}%*'
+    local infos = '%#MyStatusLineInfo#  %-1.100{v:lua.Info()}\u{200a}%*'
+    local hints = '%#MyStatusLineHint#  %-1.100{v:lua.Hint()}\u{200a}󰌵 %*'
+
+    return mode .. mode_divider .. line .. line_divider .. percentage .. percentage_divider .. modified .. modified_divider .. '%=' .. diagnostics_divider .. errors .. warnings .. infos .. hints .. file_name_divider .. file_name .. type_divider .. type
+
+end
+
+function Info()
+
+    local errossera = vim.diagnostic.get(0, { severity = {
+        vim.diagnostic.severity.INFO,
+    } })
+
+    local informations = 0
+
+    for _, diagnostic in ipairs(errossera) do
+
+        if diagnostic.severity == 3 then
+            informations = informations + 1
+        end
+    end
+
+    return informations
+
+end
+
+function Hint()
+
+    local errossera = vim.diagnostic.get(0, { severity = {
+        vim.diagnostic.severity.HINT
+    } })
+
+    local hints = 0
+
+    for _, diagnostic in ipairs(errossera) do
+
+        if diagnostic.severity == 4 then
+            hints = hints + 1
+        end
+
+    end
+
+    return hints
+
+end
+
+function Warning()
+
+    local errossera = vim.diagnostic.get(0, { severity = {
+        vim.diagnostic.severity.WARN,
+    } })
+
+    local warnings = 0
+
+    for _, diagnostic in ipairs(errossera) do
+
+        if diagnostic.severity == 2 then
+            warnings = warnings + 1
+        end
+    end
+
+    return warnings
+
+end
+
+function Error()
+
+    local errossera = vim.diagnostic.get(0, { severity = {
+        vim.diagnostic.severity.ERROR,
+    } })
+
+    local errors = 0
+
+    for _, diagnostic in ipairs(errossera) do
+
+        if diagnostic.severity == 1 then
+            errors = errors + 1
+        end
+
+    end
+
+    return errors
 
 end
 
@@ -149,7 +237,7 @@ function Diagnostics()
         end
     end
 
-    return (tostring(errors) .. '‼️  ' .. tostring(warnings) .. '⚠️  ' .. tostring(informations) .. 'ℹ️  ' .. tostring(hints) .. '💡')
+    return errors, warnings, informations, hints
 
 end
 

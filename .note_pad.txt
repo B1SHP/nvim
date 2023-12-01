@@ -26,3 +26,10 @@ Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os 
 @===========================================================================@>Link<@==========================================================================@
 Terminar de fazer o comando que atualiza a configuração
 Devolver o keymap para os converters 
+Adicionar HashMaps ao bufferUtils
+Fazer um pom para as libs
+Telemetria ->
+Quec -> 
+Suntech ->
+Posição ->
+Contrato ->
