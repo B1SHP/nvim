@@ -31,3 +31,5 @@ vim.cmd('sign define DiagnosticSignError text= texthl=DiagnosticSignError lin
 vim.cmd('sign define DiagnosticSignWarn text= texthl=DiagnosticSignWarn linehl= numhl=')
 vim.cmd('sign define DiagnosticSignInfo text= texthl=DiagnosticSignInfo linehl= numhl=')
 vim.cmd('sign define DiagnosticSignHint text= texthl=DiagnosticSignHint linehl= numhl=')
+
+vim.cmd('set foldmethod=manual')

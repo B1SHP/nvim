@@ -51,7 +51,7 @@ function Status_bar()
     local diagnostics = '%#MyStatusLineDiagnostics# %-1.100{v:lua.Diagnostics()} %*'
     local diagnostics_divider = '%#MyStatusLineDiagnosticsDivider#%*'
 
-    local errors = '%#MyStatusLineError#  %-1.100{v:lua.Error()}\u{200a}%*'
+    local errors = '%#MyStatusLineError# %-1.100{v:lua.Error()}\u{200a}%*'
     local warnings = '%#MyStatusLineWarning#  %-1.100{v:lua.Warning()}\u{200a}%*'
     local infos = '%#MyStatusLineInfo#  %-1.100{v:lua.Info()}\u{200a}%*'
     local hints = '%#MyStatusLineHint#  %-1.100{v:lua.Hint()}\u{200a}󰌵 %*'
