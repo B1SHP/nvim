@@ -85,6 +85,8 @@ vim.api.nvim_set_keymap('n', '<leader>l', ':Lazy<CR>', {noremap = true, silent =
 vim.api.nvim_set_keymap('n', '<leader>k', ':Mason<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>j', ':lua Find_files_local()<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>h', ':Telescope find_files hidden=true no_ignore=true<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>a', 'za', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('v', '<leader>f', 'zf', {noremap = true, silent = true})
 
 --LSP STUFF
 vim.api.nvim_set_keymap('n', 'imp', ':lua vim.lsp.buf.implementation()<CR>', {noremap = true, silent = true})
