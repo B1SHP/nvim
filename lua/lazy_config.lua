@@ -66,12 +66,18 @@ require("lazy").setup({
         'kdheepak/lazygit.nvim'
     },
     {
-        'ggandor/leap.nvim'
-    },
-    {
-        'rcarriga/nvim-notify',
+        'ggandor/leap.nvim',
         config = function ()
-            vim.notify = require("notify")
+            require('leap').add_default_mappings()
         end
     },
+    {
+        'nvim-treesitter/nvim-treesitter-context'
+    },
+    {
+        'kylechui/nvim-surround',
+        config = function ()
+            require('nvim-surround').setup({})
+        end
+    }
 })

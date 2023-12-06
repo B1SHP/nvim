@@ -9,6 +9,16 @@ Freyja: javascipt
 Image Processing: Webassembly
 @==========================================================================@>Freyja<@=========================================================================@
 Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
+@========================================================================@>Memorizar<@========================================================================@
+normal: ysiw" para adicionar oq tu quer 
+normal: ds" remover oq tu quer
+normal: cs"' muda oq tu quer
+normal: yss" ignora espaço
+visual: ^S
+<leader-f>: creates folder
+<leader-a>: changes folder status
+Corrigr o conflito do shift s do leap e do surround
+Terminar de corrigir o negocio do visual dps
 @===========================================================================@>Link<@==========================================================================@
 Terminar de fazer o comando que atualiza a configuração
 Adicionar HashMaps ao bufferUtils
@@ -21,23 +31,15 @@ Adicionar shades diferentes as constantes
 @==========================================================================@>Popup<@==========================================================================@
 adicionar os updates da lsp
 Configurar melhor os popups
-@========================================================================@>Encapsula<@========================================================================@
-Dar uma olhada em uma extenção que gera a encapsulação das coisas
 @=========================================================================@>VimDiff<@=========================================================================@
 Ver o diff do neovim
 :vert diffsplit path
-@===========================================================================@>Leap<@==========================================================================@
-Definir os safe characters do leap
 @====================================================================@>SegundaStatusLine<@====================================================================@
 Ver sobre fazer uma segunda status line
-@========================================================================@>TreeSitter<@=======================================================================@
-Ver o plugin de contexto do treesitter (O plugin que adiciona o metodo sendo editado ao topo da tela)
 @==========================================================================@>Backup<@=========================================================================@
 Adicionar a funçãp de backup aos dois plugins que precisam de txt
 @=========================================================================@>Comments<@========================================================================@
 Make a new comment thingy
 @=========================================================================@>Notebook<@========================================================================@
 Change the way the titles are created
-@========================================================================@>Memorizar<@========================================================================@
-zf = create folder 
-za = open/close folder
+@==========================================================================@>Stack<@==========================================================================@
