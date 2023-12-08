@@ -14,6 +14,7 @@ lsp_config.clangd.setup({capabilities = capabilities,})
 lsp_config.rust_analyzer.setup({capabilities = capabilities,})
 lsp_config.html.setup({capabilities = capabilities,})
 lsp_config.cssls.setup({capabilities = capabilities,})
+lsp_config.tailwindcss.setup({capabilities = capabilities})
 
 lsp_config.lua_ls.setup({
     capabilities = capabilities,
