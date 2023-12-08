@@ -11,6 +11,10 @@ lsp_config.biome.setup({capabilities = capabilities,})
 lsp_config.pyright.setup({capabilities = capabilities,})
 lsp_config.volar.setup({capabilities = capabilities,})
 lsp_config.clangd.setup({capabilities = capabilities,})
+lsp_config.rust_analyzer.setup({capabilities = capabilities,})
+lsp_config.html.setup({capabilities = capabilities,})
+lsp_config.cssls.setup({capabilities = capabilities,})
+lsp_config.tailwindcss.setup({capabilities = capabilities})
 
 lsp_config.lua_ls.setup({
     capabilities = capabilities,
@@ -29,18 +33,18 @@ os.execute("mkdir " .. workspace_dir)
 lsp_config.jdtls.setup({
     capabilities = capabilities,
     cmd = {
-        '/usr/lib/jvm/java-21-openjdk-amd64/bin/java',
+        '/home/bruno/.sdkman/candidates/java/current/bin/java',
         '-Declipse.application=org.eclipse.jdt.ls.core.id1',
         '-Dosgi.bundles.defaultStartLevel=4',
         '-Declipse.product=org.eclipse.jdt.ls.core.product',
         '-Dlog.protocol=true',
         '-Dlog.level=ALL',
-        '-javaagent:/home/bruno/.local/share/java/lombok.jar',
-        '-Xms1g',
+        '-Xmx1g',
         '--add-modules=ALL-SYSTEM',
+        '-javaagent:/home/bruno/.local/share/java/lombok.jar',
         '--add-opens', 'java.base/java.util=ALL-UNNAMED',
         '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-        '-jar', '/home/bruno/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.500.v20230717-2134.jar',
+        '-jar', '/home/bruno/.local/share/nvim/mason/packages/jdtls/plugins/org.eclipse.equinox.launcher_1.6.600.v20231012-1237.jar',
         '-configuration', '/home/bruno/.local/share/nvim/mason/packages/jdtls/config_linux',
         '-data', workspace_dir,
     },

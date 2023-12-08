@@ -2,6 +2,63 @@ local telescope = require('telescope.builtin')
 
 Path_global = '/home/bruno/dev/java/link-dev/microservicos/'
 
+function Add_comments()
+
+    local type = vim.api.nvim_buf_get_option(0, 'filetype')
+
+    local comments = ''
+
+    if type == 'lua' then
+        print('lua')
+        comments = '--'
+    elseif type == 'java' then
+        print('java')
+        comments = '//'
+    end
+
+    local line_start = vim.api.nvim_buf_get_mark(0, '>')[1]
+    local line_end = #vim.api.nvim_buf_get_mark(0, '<')
+
+
+    print(tostring(line_start), tostring(line_end))
+
+end
+
+function String_repetition(initial_string, string_to_be_appended, how_many_times_it_ll_be_appended, after_or_before)
+
+    if after_or_before > 0 then
+        return (initial_string .. (string_to_be_appended:rep(how_many_times_it_ll_be_appended)))
+    else
+        return ((string_to_be_appended:rep(how_many_times_it_ll_be_appended)) .. initial_string)
+    end
+
+
+end
+
+function Terminal()
+
+    local path = '~/'
+
+    local broken_path = Split(vim.api.nvim_buf_get_name(0), '/')
+
+    for index, value in ipairs(broken_path) do
+
+        if index < #broken_path and index > 2 then
+
+            path = path .. value .. '/'
+
+        end
+
+    end
+
+    vim.cmd('split')
+    vim.cmd('wincmd j')
+    vim.cmd('resize 25')
+    vim.cmd('cd ' .. path)
+    vim.cmd('term')
+
+end
+
 function Split(inputstr, sep)
 
     if sep == nil then
@@ -35,34 +92,11 @@ function Find_files_local()
 
 end
 
-function Diagnostics_status_bar()
+function Run_py()
 
-    local errossera = vim.diagnostic.get(0, { severity = {
-        vim.diagnostic.severity.ERROR,
-        vim.diagnostic.severity.WARN,
-        vim.diagnostic.severity.INFO,
-        vim.diagnostic.severity.HINT
-    } })
+    local path = vim.fn.expand('%:p')
 
-    local errors = 0
-    local warnings = 0
-    local informations = 0
-    local hints = 0
-
-    for _, diagnostic in ipairs(errossera) do
-
-        if diagnostic.severity == 1 then
-            errors = errors + 1
-        elseif diagnostic.severity == 2 then
-            warnings = warnings + 1
-        elseif diagnostic.severity == 3 then
-            informations = informations + 1
-        elseif diagnostic.severity == 4 then
-            hints = hints + 1
-        end
-    end
-
-    return (tostring(errors) .. '‼️  ' .. tostring(warnings) .. '⚠️  ' .. tostring(informations) .. '   ' .. tostring(hints) .. '💡')
+    vim.cmd('! python3 ' .. path)
 
 end
 
@@ -80,7 +114,7 @@ function Find_name(microservice_name)
 
         for line in file:lines() do
 
-            if string.match(line, '[^zqwsxcdrfvbgtyhjuiklop]name: ') then 
+            if string.match(line, '[^zqwsxcdrfvbgtyhjuiklop]name: ') then
 
                 return string.match(line, 'name: (.*)')
 
@@ -115,7 +149,7 @@ function Push()
                 'term ./mvnw clean install -DskipTests ' ..
                 '&& cd ' .. microservice_name .. '-server ' ..
                 '&& ./mvnw spring-boot:build-image -DskipTests -Pnative -Dspring-boot.build-image.imageName=10.210.7.18:5000/' .. application_name .. ' ' ..
-                '&& docker push 10.210.7.18:5000/' .. application_name .. ' ' .. 
+                '&& docker push 10.210.7.18:5000/' .. application_name .. ' ' ..
                 '&& docker rmi $(docker images -q 10.210.7.18:5000/' .. application_name .. ') --force ' ..
                 '&& exit'
             )
@@ -234,7 +268,13 @@ function LocalTree()
 
     if string.find(name, 'microservicos') then
 
-        Path_global = '/home/bruno/dev/java/link-dev/microservicos/' .. string.match(name, '/home/bruno/dev/java/link%-dev/microservicos/((%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?))') .. '/'
+        local match = string.match(name, '/home/bruno/dev/java/link%-dev/microservicos/((%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?))')
+
+        if match ~= nil then
+
+            Path_global = '/home/bruno/dev/java/link-dev/microservicos/' .. match .. '/'
+
+        end
 
     end
 

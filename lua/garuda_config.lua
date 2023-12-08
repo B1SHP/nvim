@@ -1,10 +1,8 @@
 require('functions')
 
 Buffer_view_bookmarks_list = nil
-Bookmarks_folders = {}
-Bookmarks_connections = {}
-Bookmarks_files = {}
-Path = ''
+Bookmarks_loaded = {}
+Local_path_for_garuda_bookmark = ''
 
 local garuda_path = '/home/bruno/.config/nvim/.garuda.txt'
 
@@ -12,7 +10,7 @@ vim.api.nvim_set_keymap('n', 'tp', ':lua Open_window_bookmarks_view()<CR>', {nor
 
 function Open_window_bookmarks_view()
 
-    Path = vim.fn.expand('%:p')
+    Local_path_for_garuda_bookmark = vim.fn.bufname(vim.fn.bufnr('%'))
 
     if Buffer_view_bookmarks_list == nil then
 
@@ -20,14 +18,18 @@ function Open_window_bookmarks_view()
 
         vim.api.nvim_buf_set_name(Buffer_view_bookmarks_list, "book_marks")
 
+        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'tp', ':q!<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'h', ':lua Open()<CR>', { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'af', ':lua Add_new_folder()<CR>', { noremap = true, silent = true })
         vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'ab', ':lua Add_new_bookmark()<CR>', { noremap = true, silent = true })
-        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'h', ':lua Open()<CR>', { noremap = true, silent = true })
-        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'tp', ':q!<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'rmb', ':lua Remove_bookmark()<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'rmf', ':lua Remove_folder()<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'rnb', ':lua Rename_bookmark()<CR>', { noremap = true, silent = true })
+        vim.api.nvim_buf_set_keymap(Buffer_view_bookmarks_list, 'n', 'rnf', ':lua Rename_folder()<CR>', { noremap = true, silent = true })
 
     end
 
-    Collect_bookmarks()
+    Read_from_files_garuda()
 
     Reload_bookmarks_view()
 
@@ -35,7 +37,7 @@ function Open_window_bookmarks_view()
         relative = 'editor',
         anchor = 'NW',
         width = 50,
-        height = 50,
+        height = math.floor((vim.fn.winheight(0) * 0.6)),
         row = 0,
         col = 0,
         focusable = true,
@@ -44,59 +46,216 @@ function Open_window_bookmarks_view()
 
 end
 
-function Write_bookmarks()
+function Reload_and_write()
 
+    Reload_bookmarks_view()
 
+    Write_to_file_garuda()
 
 end
 
-function Collect_bookmarks()
+function Rename_folder()
 
-    Bookmarks_folders = {}
-    Bookmarks_connections = {}
-    Bookmarks_files = {}
+    Bookmarks_loaded[tonumber(Find_folder())][1] = vim.fn.input('Write the new name for this folder: ')
 
-    local file = io.open(garuda_path, 'r')
+    Reload_and_write()
 
-    local data = ''
+end
 
-    if file ~= nil then
+function Rename_bookmark()
 
-        data = file:read('*a')
+    local folder_id, bookmark_id = Find_bookmark()
 
-        file:close()
+    if folder_id == 0 and bookmark_id == 0 then
+
+        print('This Command Was Meant To Be Used With Bookmarks Only')
+
+    else
+
+        local new_name = vim.fn.input('Write the new name for this bookmark: ')
+
+        Bookmarks_loaded[tonumber(folder_id)][3][tonumber(bookmark_id)][1] = new_name
+
+        Reload_and_write()
 
     end
 
-    local folders = Split(data, ',')
+end
 
-    for index, folder in ipairs(folders) do
+function Remove_folder()
 
-        local clean_folder = folder:gsub('\n', '')
+    table.remove(Bookmarks_loaded, tonumber(Find_folder()))
 
-        if clean_folder ~= nil and clean_folder ~= '' then
+    Reload_and_write()
 
-            local folder_data = Split(clean_folder, '=')
+end
 
-            local folder_name = folder_data[1]
+function Remove_bookmark()
 
-            table.insert(Bookmarks_folders, folder_name)
+    local folder_id, bookmark_id = Find_bookmark()
 
-            table.insert(Bookmarks_connections, false)
+    if folder_id == 0 and bookmark_id == 0 then
 
-            local files_list = {}
+        print('Wrong Command, This One Is Used To Remove Only Bookmarks')
 
-            for lindex, nicknames_and_paths in ipairs(Split(folder_data[2], '|')) do
+    else
 
-                local name_and_path = Split(nicknames_and_paths, ':')
+        table.remove(Bookmarks_loaded[tonumber(folder_id)][3], tonumber(bookmark_id))
 
-                table.insert(files_list, {name_and_path[1], name_and_path[2]})
+    end
+
+    Reload_and_write()
+
+end
+
+function Find_bookmark()
+
+    local line_number = vim.fn.line(".")
+
+    local line = vim.api.nvim_buf_get_lines(vim.fn.bufnr('%'), line_number - 1, line_number, false)[1]
+
+    if string.find(line, '╰') then
+
+        local folder_and_id = Split(Split(line, ':')[1]:gsub('╰', ''), '.')
+
+        return folder_and_id[1], folder_and_id[2]
+
+    else
+
+        return 0, 0
+
+    end
+
+end
+
+function Add_new_bookmark()
+
+    local folder_id = Find_folder()
+
+    local path = '/home/bruno/'
+
+    local broken_path = Split(Local_path_for_garuda_bookmark, '/')
+
+    for index, value in ipairs(broken_path) do
+
+        if index < #broken_path then
+
+            path = path .. value .. '/'
+
+        end
+
+    end
+
+    local nickname = vim.fn.input('Write the name for the new bookmark: ')
+
+    local size = #Bookmarks_loaded[folder_id]
+
+    if size > 2 then
+
+        table.insert(Bookmarks_loaded[folder_id][3], {nickname, path})
+
+    else
+
+        table.insert(Bookmarks_loaded[folder_id], {{nickname, path}})
+        Bookmarks_loaded[folder_id][2] = true
+    end
+
+    Reload_and_write()
+
+end
+
+function Add_new_folder()
+
+    table.insert(Bookmarks_loaded, {vim.fn.input('Write the name for the new folder: '), false})
+
+    Reload_and_write()
+
+end
+
+function Read_from_files_garuda()
+
+    Bookmarks_loaded = {}
+
+    local file = io.open(garuda_path, 'r')
+
+    local line = ''
+
+    if file ~= nil then
+
+        while line ~= nil do
+
+            local data = {}
+
+            line = file:read('l')
+
+            if line ~= nil then
+
+                line = line:gsub('\n', '')
+
+                local folder_name_and_rest = Split(line, '=')
+
+                table.insert(data, folder_name_and_rest[1])
+                table.insert(data, false)
+
+                if folder_name_and_rest[2] ~= nil then
+
+                    local bookmarks_and_paths_groups = Split(folder_name_and_rest[2], '|')
+
+                    local index = 1
+
+                    local bookmarks = {}
+
+                    while index <= #bookmarks_and_paths_groups do
+
+                        local bookmarks_and_paths = Split(bookmarks_and_paths_groups[index], ':')
+
+                        table.insert(bookmarks, bookmarks_and_paths)
+
+                        index = index + 1
+
+                    end
+
+                    table.insert(data, bookmarks)
+
+                end
+
+                table.insert(Bookmarks_loaded, data)
 
             end
 
-            table.insert(Bookmarks_files, files_list)
+        end
+
+    end
+
+end
+
+function Write_to_file_garuda()
+
+    local file = io.open(garuda_path, 'w')
+
+    if file ~= nil then
+
+        for _, folder in ipairs(Bookmarks_loaded) do
+
+            local line = folder[1] .. '='
+
+            if #folder > 2 then
+
+                for _, file_path in ipairs(folder[3]) do
+
+                    line = line .. file_path[1] .. ':' .. file_path[2] .. '|'
+
+                end
+
+            end
+
+            line = line .. '\n'
+
+            file:write(line)
 
         end
+
+        file:close()
 
     end
 
@@ -109,21 +268,31 @@ function Reload_bookmarks_view()
         '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━'
     }
 
-    for index, folder in ipairs(Bookmarks_folders) do
+    local index = 1
 
-        table.insert(Bookmarks_in_memory, (' ' .. tostring(index) .. ': ' .. folder))
+    while index <= #Bookmarks_loaded do
 
-        local file = Bookmarks_files[index]
+        table.insert(Bookmarks_in_memory, (' ' .. tostring(index) .. ': ' .. Bookmarks_loaded[index][1]))
 
-        if Bookmarks_connections[index] then
+        if #Bookmarks_loaded[index] > 2 then
 
-            for i, data in ipairs(file) do
+            local inner_index = 1
 
-                table.insert(Bookmarks_in_memory, (' ╰' .. tostring(index) .. '.' .. tostring(i) .. ': ' .. file[i][1]))
+            while inner_index <= #Bookmarks_loaded[index][3] do
+
+                if Bookmarks_loaded[index][2] then
+
+                    table.insert(Bookmarks_in_memory, (' ╰' .. tostring(index) .. '.' .. tostring(inner_index) .. ': ' .. Bookmarks_loaded[index][3][inner_index][1]))
+
+                end
+
+                inner_index = inner_index + 1
 
             end
 
         end
+
+        index = index + 1
 
     end
 
@@ -159,7 +328,7 @@ function Open()
 
         local locations = Split(Split(line, ':')[1]:gsub('╰', ''), '.')
 
-        Path_global = Bookmarks_files[tonumber(locations[1])][tonumber(locations[2])][2]
+        Path_global = Bookmarks_loaded[tonumber(locations[1])][3][tonumber(locations[2])][2]
 
         vim.cmd('e ' .. Path_global)
 
@@ -169,7 +338,7 @@ function Open()
 
         if folder_id ~= nil then
 
-            Bookmarks_connections[folder_id] = not Bookmarks_connections[folder_id]
+            Bookmarks_loaded[folder_id][2] = not Bookmarks_loaded[folder_id][2]
 
             Reload_bookmarks_view()
 
@@ -179,78 +348,7 @@ function Open()
 
 end
 
-function Add_new_bookmark()
-
-    local file = io.open(garuda_path, 'r')
-
-    local target_line = Find_folder()
-
-    local lines = {}
-
-    if file ~= nil then
-
-        for line in file:lines() do
-
-            local clean_line = line:gsub('\n', '')
-
-            clean_line = clean_line:gsub(',', '')
-
-            table.insert(lines, clean_line)
-
-        end
-
-        file:close()
-
-    end
-
-    file = io.open(garuda_path, 'w')
-
-    if file ~= nil then
-
-        file:close()
-
-    end
-
-    local dir = '/'
-
-    local split_path = Split(Path, '/');
-
-    for index, name in ipairs(split_path) do
-
-        if name ~= nil and index < #split_path then
-
-            dir = dir .. name .. '/'
-
-        end
-
-    end
-
-    local line_to_be_modified = lines[target_line] .. vim.fn.input("Choose a Nickname For This Bookmark: ") .. ':' .. dir .. '|'
-
-    lines[target_line] = line_to_be_modified
-
-    file = io.open(garuda_path, 'w')
-
-    if file ~= nil then
-
-        for index, line in ipairs(lines) do
-
-            local final_line = line .. ',\n'
-
-            file:write(final_line)
-
-        end
-
-        file:close()
-
-    end
-
-    Collect_bookmarks()
-
-end
-
 function Reload_window_bookmarks_view()
-    vim.cmd('highlight CursorLine guibg=#171717 guifg=#ca9dd7')
     vim.cmd('setlocal nonumber norelativenumber')
     vim.cmd('highlight CustomChar guifg=#7fcbd7')
     vim.cmd('syntax match CustomChar /./')

@@ -7,7 +7,41 @@ Website: Webassembly
 Android App: Kotlin
 Freyja: javascipt
 Image Processing: Webassembly
-@==========================================================================@>Notes<@==========================================================================@
-Finish garuda
 @==========================================================================@>Freyja<@=========================================================================@
 Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
+@========================================================================@>Memorizar<@========================================================================@
+normal: ysiw" para adicionar oq tu quer 
+normal: ds" remover oq tu quer
+normal: cs"' muda oq tu quer
+normal: yss" ignora espaço
+visual: ^S
+<leader-f>: creates folder
+<leader-a>: changes folder status
+Corrigr o conflito do shift s do leap e do surround
+Terminar de corrigir o negocio do visual dps
+@===========================================================================@>Link<@==========================================================================@
+Terminar de fazer o comando que atualiza a configuração
+Adicionar HashMaps ao bufferUtils
+Fazer um pom para as libs
+Passar o contrato para o java 21
+Ver com o hay sobre os microservicos: carreta, resumo betoneira, accessorios e evento fhc (N acho q ta comitado) estarem no Java 21 e no server de teste 
+Terminar o Lora
+@========================================================================@>Highlight<@========================================================================@
+Só falta ver aquelas cores
+Adicionar shades diferentes as constantes
+@==========================================================================@>Popup<@==========================================================================@
+adicionar os updates da lsp
+Configurar melhor os popups
+@=========================================================================@>VimDiff<@=========================================================================@
+Ver o diff do neovim
+:vert diffsplit path
+@====================================================================@>SegundaStatusLine<@====================================================================@
+Ver sobre fazer uma segunda status line
+@==========================================================================@>Backup<@=========================================================================@
+Adicionar a funçãp de backup aos dois plugins que precisam de txt
+@=========================================================================@>Comments<@========================================================================@
+Make a new comment thingy
+@=========================================================================@>Notebook<@========================================================================@
+Change the way the titles are created
+@========================================================================@>statusLine<@=======================================================================@
+Fazer ela coletar os icons apartir do .* do file ao invés do tipo do próprio file

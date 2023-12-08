@@ -3,7 +3,9 @@ require('functions')
 vim.api.nvim_set_keymap('n', 'asd', '<Esc>:lua Open_window_note_pad()<CR>i', {noremap = true, silent = true})
 
 Buffer_view_note_pad = nil
+
 local path = '/home/bruno/.config/nvim/.note_pad.txt'
+local path_backup = '/home/bruno/.config/nvim/.note_pad_backup.txt'
 
 function Open_window_note_pad()
 
@@ -11,7 +13,7 @@ function Open_window_note_pad()
 
     vim.api.nvim_buf_set_name(Buffer_view_note_pad, "note_pad")
 
-    vim.api.nvim_buf_set_keymap(Buffer_view_note_pad, 'i', 'qq', '<Esc>:lua Write_to_file()<CR>', { noremap = true, silent = true })
+    vim.api.nvim_buf_set_keymap(Buffer_view_note_pad, 'i', 'qq', '<Esc>:lua Write_to_file_note_pad()<CR>', { noremap = true, silent = true })
 
     vim.api.nvim_buf_set_lines(Buffer_view_note_pad, 0, -1, false, Load_file())
 
@@ -57,7 +59,34 @@ function Build_line_marking(mark)
 
 end
 
-function Write_to_file()
+function Write_to_file_note_pad_backup()
+
+    local amount_of_lines_files = 0
+
+    local file = io.open(path, 'r')
+
+    if file ~= nil then
+
+        for line in file:lines() do
+            amount_of_lines_files = amount_of_lines_files + 1
+            print(line)
+        end
+
+        file:close()
+
+    end
+
+    if amount_of_lines_files > 0 then
+
+
+
+    else
+        
+    end
+
+end
+
+function Write_to_file_note_pad()
 
     local file = io.open(path, 'w')
 

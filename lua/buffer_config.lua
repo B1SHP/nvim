@@ -121,6 +121,8 @@ function Diagnostics_buffer(buffer)
         vim.diagnostic.severity.WARN
     } })
 
+    local saved = vim.fn.getbufinfo(buffer)[1].changed == 1 and '+' or '-'
+
     local errors = 0
     local warnings = 0
 
@@ -134,13 +136,13 @@ function Diagnostics_buffer(buffer)
 
     end
 
-    if errors == 0 and warnings == 0 then
+    if errors == 0 and warnings == 0 and saved == '-' then
 
         return '⭐'
 
     else
 
-        return tostring(errors) .. '‼️  ' .. tostring(warnings) .. '⚠️'
+        return tostring(errors) .. '‼️  ' .. tostring(warnings) .. '⚠️  [' .. saved .. '] '
 
     end
 
@@ -176,7 +178,6 @@ function Reload_window_buffers_view()
 end
 
 function Recolor_window_buffers_view()
-    vim.cmd('highlight CursorLine guibg=#171717 guifg=#ca9dd7')
     vim.cmd('setlocal nonumber norelativenumber')
     vim.cmd('highlight CustomChar guifg=#7fcbd7')
     vim.cmd('syntax match CustomChar /./')
