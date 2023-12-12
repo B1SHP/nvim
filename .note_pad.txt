@@ -45,3 +45,5 @@ Make a new comment thingy
 Change the way the titles are created
 @========================================================================@>statusLine<@=======================================================================@
 Fazer ela coletar os icons apartir do .* do file ao invés do tipo do próprio file
+@========================================================================@>Telescope<@========================================================================@
+https://miguelcrespo.co/posts/using-telescope-to-find-text-inside-paths/
