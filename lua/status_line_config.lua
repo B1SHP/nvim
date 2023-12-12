@@ -48,7 +48,6 @@ function Status_bar()
     local file_name = '%#MyStatusLineFileName# %-1.100{v:lua.File_name()} %*'
     local file_name_divider = '%#MyStatusLineFileNameDivider#%*'
 
-    local diagnostics = '%#MyStatusLineDiagnostics# %-1.100{v:lua.Diagnostics()} %*'
     local diagnostics_divider = '%#MyStatusLineDiagnosticsDivider#%*'
 
     local errors = '%#MyStatusLineError# %-1.100{v:lua.Error()}\u{200a}%*'
