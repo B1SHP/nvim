@@ -1,5 +1,4 @@
 @=========================================================================@>Estudos<@=========================================================================@
-Notepad: Assembly language
 Text-based game: C++
 Web scrapper: Python
 CLI: Rust
@@ -25,7 +24,7 @@ Adicionar HashMaps ao bufferUtils
 Fazer um pom para as libs
 Passar o contrato para o java 21
 Ver com o hay sobre os microservicos: carreta, resumo betoneira, accessorios e evento fhc (N acho q ta comitado) estarem no Java 21 e no server de teste 
-Terminar o Lora
+Terminar o Lora (Fazer o mqtt e ver com o hay o lugar para salvar)
 @========================================================================@>Highlight<@========================================================================@
 Só falta ver aquelas cores
 Adicionar shades diferentes as constantes
@@ -45,5 +44,7 @@ Make a new comment thingy
 Change the way the titles are created
 @========================================================================@>statusLine<@=======================================================================@
 Fazer ela coletar os icons apartir do .* do file ao invés do tipo do próprio file
-@========================================================================@>Telescope<@========================================================================@
-https://miguelcrespo.co/posts/using-telescope-to-find-text-inside-paths/
+@=========================================================================@>Request<@=========================================================================@
+
+@=========================================================================@>Discord<@=========================================================================@
+ver os bots do discord
