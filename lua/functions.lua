@@ -75,6 +75,10 @@ function Find_files_local()
 
         Path_global = '/home/bruno/dev/java/link-dev/microservicos/' .. string.match(name, '/home/bruno/dev/java/link%-dev/microservicos/((%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?))') .. '/'
 
+    elseif string.find(name, 'microservicos') then
+
+        Path_global = '/home/bruno/dev/java/link-dev/api/' .. string.match(name, '/home/bruno/dev/java/link%-dev/api/((%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?))') .. '/'
+
     end
 
     telescope.find_files({
@@ -236,6 +240,10 @@ function MicroservicesTree()
 
         Path_global = '/home/bruno/dev/java/link-dev/microservicos/' .. string.match(name, '/home/bruno/dev/java/link%-dev/microservicos/((%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?))') .. '/'
 
+    elseif string.find(name, 'api') then
+
+        Path_global = '/home/bruno/dev/java/link-dev/api/'
+
     else
 
         Path_global = '/home/bruno/dev/java/link-dev/microservicos/'
@@ -265,6 +273,16 @@ function LocalTree()
         if match ~= nil then
 
             Path_global = '/home/bruno/dev/java/link-dev/microservicos/' .. match .. '/'
+
+        end
+
+    elseif string.find(name, 'api') then
+
+        local match = string.match(name, '/home/bruno/dev/java/link%-dev/api/((%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?)(%w*)(%-?))')
+
+        if match ~= nil then
+
+            Path_global = '/home/bruno/dev/java/link-dev/api/' .. match .. '/'
 
         end
 
