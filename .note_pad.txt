@@ -35,11 +35,7 @@ Configurar melhor os popups
 @==================================================@>VimDiff<@==================================================@
 Ver o diff do neovim
 :vert diffsplit path
-@=============================================@>SegundaStatusLine<@=============================================@
-Ver sobre fazer uma segunda status line
 @===================================================@>Backup<@==================================================@
 Adicionar a funçãp de backup aos dois plugins que precisam de txt
 @==================================================@>Notebook<@=================================================@
 Change the way the titles are created
-@=================================================@>statusLine<@================================================@
-Fazer ela coletar os icons apartir do .* do file ao invés do tipo do próprio file

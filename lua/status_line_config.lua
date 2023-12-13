@@ -207,7 +207,7 @@ function Type()
 
     end
 
-    return nil
+    return ''
 
 end
 
