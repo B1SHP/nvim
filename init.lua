@@ -1,4 +1,3 @@
-require('notify_config')
 require('lazy_config')
 require('color_scheme_config')
 require('vim_config')

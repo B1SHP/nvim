@@ -21,7 +21,7 @@ lsp_config.lua_ls.setup({
     settings = {
         Lua = {
             diagnostics = {
-                globals = {"vim"},  -- Set globals to make vim variable available to LSP
+                globals = {"vim"},
             },
         }
     },

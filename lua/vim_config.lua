@@ -18,6 +18,7 @@ vim.api.nvim_set_hl(0, 'LineNr', {fg='#857ebb', bold = true})
 vim.api.nvim_set_hl(0, 'LineNrBelow', {fg='#ca9dd7', bold = true})
 
 vim.api.nvim_create_autocmd('BufEnter', {command = 'lua require("lazygit.utils").project_root_dir()'})
+vim.api.nvim_create_autocmd('BufEnter', {command = 'lua Change_add_comments()'})
 
 vim.cmd('highlight Number guifg=#68E068')
 vim.cmd('highlight Boolean guifg=#46CE46')

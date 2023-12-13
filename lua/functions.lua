@@ -2,25 +2,17 @@ local telescope = require('telescope.builtin')
 
 Path_global = '/home/bruno/dev/java/link-dev/microservicos/'
 
-function Add_comments()
+function Change_add_comments()
 
     local type = vim.api.nvim_buf_get_option(0, 'filetype')
 
-    local comments = ''
-
     if type == 'lua' then
-        print('lua')
-        comments = '--'
+        vim.api.nvim_set_keymap('v', '/', ':s/^/--/<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('v', '<C-r>', ':s/--//<CR>', { noremap = true, silent = true })
     elseif type == 'java' then
-        print('java')
-        comments = '//'
+        vim.api.nvim_set_keymap('v', '/', ':s/^/\\/\\//<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('v', '<C-r>', ':s/\\/\\///<CR>', { noremap = true, silent = true })
     end
-
-    local line_start = vim.api.nvim_buf_get_mark(0, '>')[1]
-    local line_end = #vim.api.nvim_buf_get_mark(0, '<')
-
-
-    print(tostring(line_start), tostring(line_end))
 
 end
 
