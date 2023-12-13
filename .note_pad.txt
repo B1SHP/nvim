@@ -15,10 +15,7 @@ normal: ds" remover oq tu quer
 normal: cs"' muda oq tu quer
 normal: yss" ignora espaço
 visual: ^S
-<leader-f>: creates folder
-<leader-a>: changes folder status
 Corrigr o conflito do shift s do leap e do surround
-Terminar de corrigir o negocio do visual dps
 @====================================================@>Link<@===================================================@
 Terminar de fazer o comando que atualiza a configuração
 Adicionar HashMaps ao bufferUtils
@@ -29,14 +26,9 @@ Terminar o Lora (Fazer o mqtt e ver com o hay o lugar para salvar)
 @========================================================================@>Highlight<@========================================================================@
 Só falta ver aquelas cores
 Adicionar shades diferentes as constantes
-@===================================================@>Popup<@===================================================@
-adicionar os updates da lsp
-Configurar melhor os popups
 @==================================================@>VimDiff<@==================================================@
-Ver o diff do neovim
 :vert diffsplit path
-@=============================================@>SegundaStatusLine<@=============================================@
-Ver sobre fazer uma segunda status line
+Make 1 command to save the first path and another one to compare the current file to the modified file
 @===================================================@>Backup<@==================================================@
 Adicionar a funçãp de backup aos dois plugins que precisam de txt
 @==================================================@>Notebook<@=================================================@

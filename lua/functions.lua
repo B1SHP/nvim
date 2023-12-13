@@ -31,8 +31,6 @@ function Terminal()
 
     local path = '~/'
 
-    local broken_path = Split(vim.api.nvim_buf_get_name(0), '/')
-
     for index, value in ipairs(broken_path) do
 
         if index < #broken_path and index > 2 then

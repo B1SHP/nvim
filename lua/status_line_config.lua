@@ -191,21 +191,23 @@ end
 
 function Type()
 
-    local type = vim.api.nvim_buf_get_option(0, 'filetype')
+    local type_in_string = vim.api.nvim_buf_get_option(0, 'filetype')
 
-    if type ~= nil then
+    local type = Split(vim.api.nvim_buf_get_name(0), '.')
 
-        local icon = icons.get_icon('a', type)
+    for _, value in pairs(type) do
+
+        local icon = icons.get_icon('a', value)
 
         if icon ~= nil then
 
-            type = type .. ' ' .. icon
+            return (type_in_string .. ' ' .. icon)
 
         end
 
     end
 
-    return type
+    return ''
 
 end
 
