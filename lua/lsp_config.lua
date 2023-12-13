@@ -48,6 +48,7 @@ lsp_config.jdtls.setup({
         '-configuration', '/home/bruno/.local/share/nvim/mason/packages/jdtls/config_linux',
         '-data', workspace_dir,
     },
+    --root_dir = require('jdtls.setup').find_root({'.git', 'mvnw', 'gradlew'}),
     setting = {
         java = {
             home = '/usr/lib/jvm/java-21-openjdk-amd64/bin/',

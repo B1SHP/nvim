@@ -79,5 +79,11 @@ require("lazy").setup({
         config = function ()
             require('nvim-surround').setup({})
         end
+    },
+    {
+        'mfussenegger/nvim-jdtls',
+    },
+    {
+        'nvim-telescope/telescope-live-grep-args.nvim',
     }
 })
