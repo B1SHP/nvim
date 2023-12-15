@@ -7,8 +7,6 @@ Website: Webassembly
 Android App: Kotlin
 Freyja: javascipt
 Image Processing: Webassembly
-@==========================================================================@>Freyja<@=========================================================================@
-Já funciona, só falta fazer o algoritmo coletar do banco, a parte de gerar os dados ja ta top
 @========================================================================@>Memorizar<@========================================================================@
 normal: ysiw" para adicionar oq tu quer 
 normal: ds" remover oq tu quer
@@ -18,9 +16,12 @@ visual: ^S
 Ctrl+tab = next 
 Ctrl+w = delete
 Ctrl+t = new 
+"Character = para salvar um copy permanentement
+remover os movimentos do modo insert
 Corrigr o conflito do shift s do leap e do surround
 Usar o nohlsearch para n marcar depois de comentar
 Fazer o term usar o ls para chegar o mais proximo possivel do root
+Ver as coisas de clipboard
 @===========================================================================@>Link<@==========================================================================@
 Terminar de fazer o comando que atualiza a configuração
 Adicionar HashMaps ao bufferUtils
@@ -45,5 +46,7 @@ Adicionar a funçãp de backup aos dois plugins que precisam de txt
 Change the way the titles are created
 @========================================================================@>statusLine<@=======================================================================@
 Fazer ela coletar os icons apartir do .* do file ao invés do tipo do próprio file
-@=========================================================================@>Discord<@=========================================================================@
-ver os bots do discord
+@===========================================================================@>Bot<@===========================================================================@
+Application id: 1185219748556963910
+Public key: e46de67f1a25a419b83be41b99b391c81e4353558639b027b9a11610b3014452
+Token:MTE4NTIxOTc0ODU1Njk2MzkxMA.GXSYCu.JcQpjuNf1I7zAeErMiPqG0C4khNC6bLbLFD2Ew
