@@ -1,27 +1,38 @@
-@==================================================@>Estudos<@==================================================@
+@=========================================================================@>Estudos<@=========================================================================@
 Notepad: Assembly language
 Text-based game: C++
 Web scrapper: Python
 Android App: Kotlin
 Image Processing: Webassembly
-@=================================================@>Memorizar<@=================================================@
+@========================================================================@>Memorizar<@========================================================================@
 normal: ysiw" para adicionar oq tu quer 
 normal: ds" remover oq tu quer
 normal: cs"' muda oq tu quer
 normal: yss" ignora espaço
 visual: ^S
+Ctrl+tab = next 
+Ctrl+w = delete
+Ctrl+t = new 
+"Character = para salvar um copy permanentement
+remover os movimentos do modo insert
 Corrigr o conflito do shift s do leap e do surround
-@====================================================@>Link<@===================================================@
+Usar o nohlsearch para n marcar depois de comentar
+Fazer o term usar o ls para chegar o mais proximo possivel do root
+Ver as coisas de clipboard
+@===========================================================================@>Link<@==========================================================================@
 Terminar de fazer o comando que atualiza a configuração
 Adicionar HashMaps ao bufferUtils
 Fazer um pom para as libs
 Terminar o Lora (Fazer o mqtt e ver com o hay o lugar para salvar)
-Subir o EventoFhc e mais um que ta faltando
-@=================================================@>Highlight<@=================================================@
+@========================================================================@>Highlight<@========================================================================@
 Só falta ver aquelas cores
-@===================================================@>Backup<@==================================================@
+Adicionar shades diferentes as constantes
+@==========================================================================@>Backup<@=========================================================================@
 Adicionar a funçãp de backup aos dois plugins que precisam de txt
-@==================================================@>Notebook<@=================================================@
+@=========================================================================@>Notebook<@========================================================================@
 Change the way the titles are created
 @==================================================@>Discord<@==================================================@
 Terminar de configurar o cara responsavel por receber e responder os eventos
+Application id: 1185219748556963910
+Public key: e46de67f1a25a419b83be41b99b391c81e4353558639b027b9a11610b3014452
+Token:MTE4NTIxOTc0ODU1Njk2MzkxMA.GXSYCu.JcQpjuNf1I7zAeErMiPqG0C4khNC6bLbLFD2Ew

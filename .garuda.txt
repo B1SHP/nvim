@@ -3,5 +3,5 @@ Comandos=Queclink:/home/bruno/dev/java/link-dev/microservicos/queclink-comando/|
 Gateways=Queclink Geral:/home/bruno/dev/java/link-dev/microservicos/queclink-gateway/|Queclink GV57CG:/home/bruno/dev/java/link-dev/microservicos/queclink-gateway-gv57cg/|Teltonika:/home/bruno/dev/java/link-dev/microservicos/teltonika-gateway/|
 Libs=Buffer Utils:/home/bruno/dev/java/link-dev/microservicos/lib/buffer-utils/|Enums:/home/bruno/dev/java/link-dev/microservicos/lib/enums/|Nats:/home/bruno/dev/java/link-dev/microservicos/lib/nats-amqp/|Sauron:/home/bruno/dev/java/link-dev/microservicos/lib/sauron/|
 Extras=Posicao:/home/bruno/dev/java/link-dev/microservicos/posicao/|Evento:/home/bruno/dev/java/link-dev/microservicos/evento/|Espelhamento:/home/bruno/dev/java/link-dev/microservicos/espelhamento/|Cerca:/home/bruno/dev/java/link-dev/microservicos/cerca/|Nabu:/home/bruno/dev/java/link-dev/microservicos/nabu/|Telemetria:/home/bruno/dev/java/link-dev/microservicos/telemetria/|
-Minhas Coisas=Estudos:/home/bruno/Desktop/Estudo/|Freyja:/home/bruno/Desktop/Estudo/TRACING/freyja/|
+Minhas Coisas=Estudos:/home/bruno/Desktop/Estudo/|Freyja:/home/bruno/Desktop/Estudo/TRACING/freyja/|Discord Bot:/home/bruno/Desktop/Estudo/Rust/discord_bot/|
 Api=Api Eventos:/home/bruno/dev/java/link-dev/api/api-eventos/|

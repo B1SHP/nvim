@@ -68,14 +68,14 @@ vim.api.nvim_set_keymap('n', 'push', ':lua Push()<CR>', {noremap = true, silent 
 vim.api.nvim_set_keymap('n', '<C-p>', ':UndotreeToggle<CR><Tab>', {noremap = true, silent = true})
 
 --LEADER STUFF   
-vim.api.nvim_set_keymap('n', '<leader>d', ':lua require("telescope").extensions.live_grep_args.live_grep_args({ cwd = Path_global})<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGitCurrentFile<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>l', ':Lazy<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>k', ':Mason<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>j', ':lua Find_files_local()<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>h', ':Telescope find_files hidden=true no_ignore=true<CR>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>a', 'za', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('v', '<leader>f', 'zf', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>d', ':lua require("telescope").extensions.live_grep_args.live_grep_args({ cwd = Path_global})<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>g', ':LazyGitCurrentFile<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>l', ':Lazy<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>k', ':Mason<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>j', ':lua Find_files_local()<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>h', ':Telescope find_files hidden=true no_ignore=true<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>a', 'za', opts)
+vim.api.nvim_set_keymap('v', '<leader>f', 'zf', opts)
 
 --LSP STUFF
 vim.api.nvim_set_keymap('n', 'imp', ':lua vim.lsp.buf.implementation()<CR>', opts)
