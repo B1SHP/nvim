@@ -7,11 +7,11 @@ function Change_add_comments()
     local type = vim.api.nvim_buf_get_option(0, 'filetype')
 
     if type == 'lua' then
-        vim.api.nvim_set_keymap('v', '/', ':s/^/--/<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('v', '<C-r>', ':s/--//<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('v', '/', ':s/^/--/<CR>:nohlsearch<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('v', '<C-r>', ':s/--//<CR>:nohlsearch<CR>', { noremap = true, silent = true })
     elseif type == 'java' then
-        vim.api.nvim_set_keymap('v', '/', ':s/^/\\/\\//<CR>', { noremap = true, silent = true })
-        vim.api.nvim_set_keymap('v', '<C-r>', ':s/\\/\\///<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('v', '/', ':s/^/\\/\\//<CR>:nohlsearch<CR>', { noremap = true, silent = true })
+        vim.api.nvim_set_keymap('v', '<C-r>', ':s/\\/\\///<CR>:nohlsearch<CR>', { noremap = true, silent = true })
     end
 
 end
