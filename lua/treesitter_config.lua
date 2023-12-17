@@ -28,7 +28,7 @@ require('nvim-treesitter.configs').setup({
             enable = true
         },
     },
-    ensure_installed = {'java', 'lua', 'bash', 'python', 'javascript', 'vue'},
+    ensure_installed = {'java', 'lua', 'bash', 'python', 'javascript', 'vue', 'rust'},
 })
 
 require('treesitter-context').setup{
